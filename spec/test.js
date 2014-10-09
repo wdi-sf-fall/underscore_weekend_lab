@@ -1,6 +1,5 @@
 var myFunctions = require("../src/underscore");
 var expect = require("chai").expect;
-_ = require("underscore");
 
 describe('first', function() {
   it('should be able to pull out the first element of an array', function() {
