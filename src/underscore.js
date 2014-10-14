@@ -10,13 +10,13 @@ var myFunctions = {
   // last element.
   last :function(array, n) {
     if (n === undefined) {
-    return array[array.length-1];
+      return array[array.length-1];
     }
     else if (n > array.length) {
-    return array;
+      return array;
     }
     else {
-    return array.splice(1, n);
+      return array.splice(array.length-n, n);
     }
 
  },
@@ -45,28 +45,27 @@ var myFunctions = {
   contains :function(array, target) {
     // TIP: Many iteration problems can be most easily expressed in
     // terms of reduce()
-    return array.reduce(function(wasFound, item) {
-      if(wasFound) {
-        return true;
-      }
-      return item === target;
-    }, false);
+    return array.indexOf(target) !== -1;
+
+    // return array.reduce(function(wasFound, item) {
+    //   if(wasFound) {
+    //     return true;
+    //   }
+    //   return item === target;
+    // }, false);
   },
 
   // Hint: Use Array.isArray to check if something is an array
-  flatten :function(nestedArray, result) {
+  flatten :function(arr) {
     var flatArray = [];
-    var enterItems = function(arr) {
       arr.forEach(function(item) {
         if (Array.isArray(item)) {
-          enterItems(item);
+          flatArray= flatArray.concat(myFunctions.flatten(item));
         }
         else {
           flatArray.push(item);
         }
       });
-    };
-    enterItems(nestedArray);
     return flatArray;
   }
 };
